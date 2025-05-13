@@ -1,10 +1,6 @@
-provider "azurerm" {
-  subscription_id = "0cead613-b99d-4057-9b73-e282208bb4c4"
-  features {
-  }
-}
+
 resource "azurerm_resource_group" "githubrg" {
-  name     = "mdrg"
+  name     = "githubactionrg"
   location = "east us"
 }
 resource "azurerm_public_ip" "exampleip" {

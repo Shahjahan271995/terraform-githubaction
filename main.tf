@@ -63,25 +63,25 @@ resource "azurerm_network_interface_security_group_association" "example-nic-nsg
   network_interface_id      = azurerm_network_interface.example-nic.id
   network_security_group_id = azurerm_network_security_group.example-nsg.id
 }
-resource "azurerm_linux_virtual_machine" "example-vm" {
-  name                            = "example-vm"
-  resource_group_name             = azurerm_resource_group.githubrg.name
-  location                        = azurerm_resource_group.githubrg.location
-  size                            = "Standard_DS1_v2"
-  admin_username                  = "adminuser"
-  admin_password                  = "Password123"
-  disable_password_authentication = false
-  network_interface_ids = [
-    azurerm_network_interface.example-nic.id,
-  ]
-  os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
-    version   = "latest"
-  }
-}
+# resource "azurerm_linux_virtual_machine" "example-vm" {
+#   name                            = "example-vm"
+#   resource_group_name             = azurerm_resource_group.githubrg.name
+#   location                        = azurerm_resource_group.githubrg.location
+#   size                            = "Standard_DS1_v2"
+#   admin_username                  = "adminuser"
+#   admin_password                  = "Password123"
+#   disable_password_authentication = false
+#   network_interface_ids = [
+#     azurerm_network_interface.example-nic.id,
+#   ]
+#   os_disk {
+#     caching              = "ReadWrite"
+#     storage_account_type = "Standard_LRS"
+#   }
+#   source_image_reference {
+#     publisher = "Canonical"
+#     offer     = "UbuntuServer"
+#     sku       = "18.04-LTS"
+#     version   = "latest"
+#   }
+# }

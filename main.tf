@@ -4,7 +4,7 @@ provider "azurerm" {
   }
 }
 resource "azurerm_resource_group" "githubrg" {
-  name     = "vmrg"
+  name     = "mdrg"
   location = "east us"
 }
 resource "azurerm_public_ip" "exampleip" {

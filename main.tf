@@ -1,4 +1,3 @@
-
 resource "azurerm_resource_group" "githubrg" {
   name     = "githubactionrg"
   location = "east us"
@@ -9,12 +8,10 @@ resource "azurerm_public_ip" "exampleip" {
   resource_group_name = azurerm_resource_group.githubrg.name
   allocation_method   = "Static"
 }
-
 resource "azurerm_network_interface" "example-nic" {
   name                = "example-nic"
   location            = azurerm_resource_group.githubrg.location
   resource_group_name = azurerm_resource_group.githubrg.name
-
   ip_configuration {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.example-subnet.id
@@ -22,14 +19,12 @@ resource "azurerm_network_interface" "example-nic" {
     public_ip_address_id          = azurerm_public_ip.exampleip.id
   }
 }
-
 resource "azurerm_virtual_network" "example-vnet" {
   name                = "example-vnet"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.githubrg.location
   resource_group_name = azurerm_resource_group.githubrg.name
 }
-
 resource "azurerm_subnet" "example-subnet" {
   name                 = "example-subnet"
   resource_group_name  = azurerm_resource_group.githubrg.name
@@ -40,9 +35,7 @@ resource "azurerm_subnet" "example-subnet" {
 resource "azurerm_network_security_group" "example-nsg" {
   name                = "example-nsg"
   location            = azurerm_resource_group.githubrg.location
-  resource_group_name = azurerm_resource_group.githubrg.name
-
-  security_rule {
+  resource_group_name = azurerm_resource_group.githubrg.name security_rule {
     name                       = "SSH"
     priority                   = 1001
     direction                  = "Inbound"
@@ -54,7 +47,6 @@ resource "azurerm_network_security_group" "example-nsg" {
     destination_address_prefix = "*"
   }
 }
-
 resource "azurerm_network_interface_security_group_association" "example-nic-nsg" {
   network_interface_id      = azurerm_network_interface.example-nic.id
   network_security_group_id = azurerm_network_security_group.example-nsg.id
